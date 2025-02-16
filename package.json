@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "Playwright tests for https://github.com/albrow/elara",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "format": "npx prettier --write ."
+  },
   "keywords": [],
+  "keywords2": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.4"
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/node": "^22.13.4",
+    "prettier": "3.5.1"
   }
 }
