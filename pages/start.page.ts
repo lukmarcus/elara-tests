@@ -1,4 +1,5 @@
 import { BasePage } from './base.page';
+import { MainMenuPage } from './main-menu.page';
 import { Page } from '@playwright/test';
 
 export class StartPage extends BasePage {
@@ -7,5 +8,10 @@ export class StartPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
+  }
+
+  async clickPlayButton(): Promise<MainMenuPage> {
+    await this.playButton.click();
+    return new MainMenuPage(this.page);
   }
 }
