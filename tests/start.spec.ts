@@ -37,15 +37,5 @@ test('Start Page', async ({ page }) => {
   const levelPage = await helpModal.clickDoneButton();
   await levelPage.textbox.clear();
   await levelPage.textbox.fill(solution01);
-  await levelPage.deployButton.click();
-  await levelPage.playButton.click();
-  await levelPage.playButton.click();
-  await levelPage.forwardButton.click();
-  await levelPage.forwardButton.click();
-  await levelPage.forwardButton.click();
-  await levelPage.forwardButton.click();
-  await levelPage.forwardButton.click();
-  await levelPage.forwardButton.click();
-  await levelPage.forwardButton.click();
-  await levelPage.forwardButton.click();
+  await levelPage.deployLevelSolution(7);
 });

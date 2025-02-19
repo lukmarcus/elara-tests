@@ -1,4 +1,3 @@
-import { IntroPage } from '../pages/intro.page';
 import { BaseModal } from './base.modal';
 import { Page } from '@playwright/test';
 
