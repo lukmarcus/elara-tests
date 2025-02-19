@@ -1,4 +1,5 @@
 import { StartPage } from '../pages/start.page';
+import { solution01 } from '../solutions/01.solution';
 import { expect, test } from '@playwright/test';
 
 test('Start Page', async ({ page }) => {
@@ -18,5 +19,33 @@ test('Start Page', async ({ page }) => {
   await expect(startPage.readyText).toHaveText(expectedReadyText);
 
   // Act
-  await startPage.playButton.click();
+  const mainMenuPage = await startPage.clickPlayButton();
+  const helpModal = await mainMenuPage.clickNewGameButton();
+  await helpModal.nextButton.click();
+  await helpModal.nextButton.click();
+  const introPage = await helpModal.clickLaunchButton();
+  const hubPage = await introPage.clickSkipButton();
+  const chatPage = await hubPage.clickVideoTabletBox();
+  await chatPage.clickChatButton('Nice to meet you!');
+  await chatPage.clickChatButton('No complaints.');
+  await chatPage.clickChatButton('Where are you calling from?');
+  await chatPage.clickChatButton("Let's go!");
+  const levelsModal = await hubPage.clickMonitorBox();
+  await levelsModal.goButton.click();
+  await helpModal.nextButton.click();
+  await helpModal.nextButton.click();
+  const levelPage = await helpModal.clickDoneButton();
+  await levelPage.textbox.clear();
+  await levelPage.textbox.fill(solution01);
+  await levelPage.deployButton.click();
+  await levelPage.playButton.click();
+  await levelPage.playButton.click();
+  await levelPage.forwardButton.click();
+  await levelPage.forwardButton.click();
+  await levelPage.forwardButton.click();
+  await levelPage.forwardButton.click();
+  await levelPage.forwardButton.click();
+  await levelPage.forwardButton.click();
+  await levelPage.forwardButton.click();
+  await levelPage.forwardButton.click();
 });
