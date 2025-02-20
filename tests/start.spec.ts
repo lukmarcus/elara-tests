@@ -24,7 +24,7 @@ test('Start Page', async ({ page }) => {
   await helpModal.nextButton.click();
   await helpModal.nextButton.click();
   const introPage = await helpModal.clickLaunchButton();
-  const hubPage = await introPage.clickSkipButton();
+  let hubPage = await introPage.clickSkipButton();
   const chatPage = await hubPage.clickVideoTabletBox();
   await chatPage.clickChatButton('Nice to meet you!');
   await chatPage.clickChatButton('No complaints.');
@@ -37,5 +37,6 @@ test('Start Page', async ({ page }) => {
   const levelPage = await helpModal.clickDoneButton();
   await levelPage.textbox.clear();
   await levelPage.textbox.fill(solution01);
-  await levelPage.deployLevelSolution(7);
+  const levelEndModal = await levelPage.deployLevelSolution(7);
+  hubPage = await levelEndModal.clickBackToHubButton();
 });
