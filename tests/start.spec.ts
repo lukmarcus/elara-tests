@@ -1,6 +1,7 @@
 import { StartPage } from '../pages/start.page';
 import { solution01 } from '../solutions/01.solution';
 import { expect, test } from '@playwright/test';
+import * as path from 'path';
 
 test('Start Page', async ({ page }) => {
   // Arrange
@@ -30,6 +31,9 @@ test('Start Page', async ({ page }) => {
   await chatPage.clickChatButton('No complaints.');
   await chatPage.clickChatButton('Where are you calling from?');
   await chatPage.clickChatButton("Let's go!");
+  await page
+    .context()
+    .storageState({ path: path.join(__dirname, 'saves/00.json') });
   const levelsModal = await hubPage.clickMonitorBox();
   await levelsModal.goButton.click();
   await helpModal.nextButton.click();
@@ -38,5 +42,15 @@ test('Start Page', async ({ page }) => {
   await levelPage.textbox.clear();
   await levelPage.textbox.fill(solution01);
   const levelEndModal = await levelPage.deployLevelSolution(7);
-  hubPage = await levelEndModal.clickBackToHubButton();
+  const chatModal = await levelEndModal.goToChatModalInHub();
+  await chatModal.clickChatButton('Thanks!');
+  await chatModal.clickChatButton('Where can I find the journal?');
+  await chatModal.clickChatButton('Got it!');
+  const journalModal = await hubPage.clickJournalBox();
+  await helpModal.clickDoneButton();
+  await journalModal.nextPageButton.click();
+  await journalModal.backToHubButton.click();
+  await page
+    .context()
+    .storageState({ path: path.join(__dirname, 'saves/01.json') });
 });
