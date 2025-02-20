@@ -1,3 +1,4 @@
+import { LevelEndModal } from '../modals/level-end.modal';
 import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
 
@@ -14,11 +15,13 @@ export class LevelPage extends BasePage {
     super(page);
   }
 
-  async deployLevelSolution(steps: number): Promise<void> {
+  async deployLevelSolution(steps: number): Promise<LevelEndModal> {
     await this.deployButton.click();
 
     for (let i = 0; i <= steps; i++) {
       await this.forwardButton.click();
     }
+
+    return new LevelEndModal(this.page);
   }
 }
