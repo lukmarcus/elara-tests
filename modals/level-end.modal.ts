@@ -1,5 +1,6 @@
 import { HubPage } from '../pages/hub.page';
 import { BaseModal } from './base.modal';
+import { ChatModal } from './chat.modal';
 import { Page } from '@playwright/test';
 
 export class LevelEndModal extends BaseModal {
@@ -24,5 +25,10 @@ export class LevelEndModal extends BaseModal {
   async clickBackToHubButton(): Promise<HubPage> {
     await this.backToHubButton.click();
     return new HubPage(this.page);
+  }
+
+  async goToChatModalInHub(): Promise<ChatModal> {
+    await this.backToHubButton.click();
+    return new ChatModal(this.page);
   }
 }

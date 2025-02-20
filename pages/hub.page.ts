@@ -1,3 +1,4 @@
+import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { BasePage } from './base.page';
 import { ChatPage } from './chat.page';
@@ -20,5 +21,10 @@ export class HubPage extends BasePage {
   async clickMonitorBox(): Promise<LevelSelectModal> {
     await this.monitorBox.click();
     return new LevelSelectModal(this.page);
+  }
+
+  async clickJournalBox(): Promise<JournalModal> {
+    await this.journalBox.click();
+    return new JournalModal(this.page);
   }
 }
