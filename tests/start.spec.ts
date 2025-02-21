@@ -33,7 +33,7 @@ test('Start Page', async ({ page }) => {
   await chatPage.clickChatButton("Let's go!");
   await page
     .context()
-    .storageState({ path: path.join(__dirname, 'saves/00.json') });
+    .storageState({ path: path.join(process.cwd(), 'saves/level00.json') });
   const levelsModal = await hubPage.clickMonitorBox();
   await levelsModal.goButton.click();
   await helpModal.nextButton.click();
@@ -52,5 +52,5 @@ test('Start Page', async ({ page }) => {
   await journalModal.backToHubButton.click();
   await page
     .context()
-    .storageState({ path: path.join(__dirname, 'saves/01.json') });
+    .storageState({ path: path.join(process.cwd(), 'saves/level01.json') });
 });
