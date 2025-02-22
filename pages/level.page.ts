@@ -1,8 +1,11 @@
+import { TopMenuComponent } from '../components/top-menu.component';
 import { LevelEndModal } from '../modals/level-end.modal';
 import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
 
 export class LevelPage extends BasePage {
+  topMenu = new TopMenuComponent(this.page);
+
   deployButton = this.page.locator('button', { hasText: 'Deploy' });
   resetButton = this.page.locator('button', { hasText: 'Reset' });
   stopButton = this.page.locator('.control-bar button').nth(0);
