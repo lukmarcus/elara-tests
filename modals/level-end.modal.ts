@@ -1,4 +1,5 @@
 import { HubPage } from '../pages/hub.page';
+import { LevelPage } from '../pages/level.page';
 import { BaseModal } from './base.modal';
 import { ChatModal } from './chat.modal';
 import { Page } from '@playwright/test';
@@ -17,6 +18,9 @@ export class LevelEndModal extends BaseModal {
   backToHubButton = this.levelEndModal.locator('button', {
     hasText: 'Back to Hub',
   });
+  nextLevelButton = this.levelEndModal.locator('button', {
+    hasText: 'Next Level',
+  });
 
   constructor(page: Page) {
     super(page);
@@ -30,5 +34,10 @@ export class LevelEndModal extends BaseModal {
   async goToChatModalInHub(): Promise<ChatModal> {
     await this.backToHubButton.click();
     return new ChatModal(this.page);
+  }
+
+  async clickNextLevelButton(): Promise<LevelPage> {
+    await this.nextLevelButton.click();
+    return new LevelPage(this.page);
   }
 }

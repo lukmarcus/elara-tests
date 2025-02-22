@@ -1,5 +1,6 @@
+import { level00Solution } from '../data/level00.data';
+import { level01Solution } from '../data/level01.data';
 import { StartPage } from '../pages/start.page';
-import { level00Solution } from '../solutions/00.solution';
 import { expect, test } from '@playwright/test';
 import * as path from 'path';
 
@@ -41,7 +42,7 @@ test('Start Page', async ({ page }) => {
   const levelPage = await helpModal.clickDoneButton();
   await levelPage.textbox.clear();
   await levelPage.textbox.fill(level00Solution);
-  const levelEndModal = await levelPage.deployLevelSolution(7);
+  let levelEndModal = await levelPage.deployLevelSolution(7);
   const chatModal = await levelEndModal.goToChatModalInHub();
   await chatModal.clickChatButton('Thanks!');
   await chatModal.clickChatButton('Where can I find the journal?');
@@ -61,4 +62,7 @@ test('Start Page', async ({ page }) => {
   await page
     .context()
     .storageState({ path: path.join(process.cwd(), 'saves/level01.json') });
+  await levelPage.textbox.clear();
+  await levelPage.textbox.fill(level01Solution);
+  levelEndModal = await levelPage.deployLevelSolution(11);
 });
