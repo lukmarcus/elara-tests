@@ -31,11 +31,11 @@ test('Start Page', async ({ page }) => {
   await chatPage.clickChatButton('No complaints.');
   await chatPage.clickChatButton('Where are you calling from?');
   await chatPage.clickChatButton("Let's go!");
+  let levelsModal = await hubPage.clickMonitorBox();
+  await levelsModal.goButton.click();
   await page
     .context()
     .storageState({ path: path.join(process.cwd(), 'saves/level00.json') });
-  const levelsModal = await hubPage.clickMonitorBox();
-  await levelsModal.goButton.click();
   await helpModal.nextButton.click();
   await helpModal.nextButton.click();
   const levelPage = await helpModal.clickDoneButton();
@@ -50,6 +50,14 @@ test('Start Page', async ({ page }) => {
   await helpModal.clickDoneButton();
   await journalModal.nextPageButton.click();
   await journalModal.backToHubButton.click();
+  levelsModal = await hubPage.clickMonitorBox();
+  await levelsModal.goButton.click();
+  await helpModal.nextButton.click();
+  await helpModal.nextButton.click();
+  await helpModal.doneButton.click();
+  await levelPage.topMenu.clickHubButton();
+  await hubPage.clickMonitorBox();
+  await levelsModal.goButton.click();
   await page
     .context()
     .storageState({ path: path.join(process.cwd(), 'saves/level01.json') });
