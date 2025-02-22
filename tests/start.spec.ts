@@ -1,5 +1,5 @@
 import { StartPage } from '../pages/start.page';
-import { solution01 } from '../solutions/01.solution';
+import { level00Solution } from '../solutions/00.solution';
 import { expect, test } from '@playwright/test';
 import * as path from 'path';
 
@@ -40,7 +40,7 @@ test('Start Page', async ({ page }) => {
   await helpModal.nextButton.click();
   const levelPage = await helpModal.clickDoneButton();
   await levelPage.textbox.clear();
-  await levelPage.textbox.fill(solution01);
+  await levelPage.textbox.fill(level00Solution);
   const levelEndModal = await levelPage.deployLevelSolution(7);
   const chatModal = await levelEndModal.goToChatModalInHub();
   await chatModal.clickChatButton('Thanks!');
