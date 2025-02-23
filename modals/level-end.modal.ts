@@ -31,11 +31,6 @@ export class LevelEndModal extends BaseModal {
     return new HubPage(this.page);
   }
 
-  async goToChatModalInHub(): Promise<ChatModal> {
-    await this.backToHubButton.click();
-    return new ChatModal(this.page);
-  }
-
   async clickNextLevelButton(): Promise<LevelPage> {
     await this.nextLevelButton.click();
     return new LevelPage(this.page);

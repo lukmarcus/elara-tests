@@ -1,4 +1,5 @@
 import { TopMenuComponent } from '../components/top-menu.component';
+import { ChatModal } from '../modals/chat.modal';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { BasePage } from './base.page';
@@ -7,6 +8,7 @@ import { Page } from '@playwright/test';
 
 export class HubPage extends BasePage {
   topMenu = new TopMenuComponent(this.page);
+  chatModal = new ChatModal(this.page);
 
   videoTabletBox = this.page.locator('#video-tablet-box');
   monitorBox = this.page.locator('#monitor-box');

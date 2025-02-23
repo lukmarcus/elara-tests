@@ -43,10 +43,10 @@ test('Start Page', async ({ page }) => {
   await levelPage.textbox.clear();
   await levelPage.textbox.fill(level00Solution);
   let levelEndModal = await levelPage.deployLevelSolution(7);
-  const chatModal = await levelEndModal.goToChatModalInHub();
-  await chatModal.clickChatButton('Thanks!');
-  await chatModal.clickChatButton('Where can I find the journal?');
-  await chatModal.clickChatButton('Got it!');
+  hubPage = await levelEndModal.clickBackToHubButton();
+  await hubPage.chatModal.clickChatButton('Thanks!');
+  await hubPage.chatModal.clickChatButton('Where can I find the journal?');
+  await hubPage.chatModal.clickChatButton('Got it!');
   const journalModal = await hubPage.clickJournalBox();
   await helpModal.clickDoneButton();
   await journalModal.nextPageButton.click();
@@ -65,4 +65,5 @@ test('Start Page', async ({ page }) => {
   await levelPage.textbox.clear();
   await levelPage.textbox.fill(level01Solution);
   levelEndModal = await levelPage.deployLevelSolution(11);
+  await levelEndModal.clickNextLevelButton();
 });
