@@ -1,3 +1,4 @@
+import { LevelPage } from '../pages/level.page';
 import { BaseModal } from './base.modal';
 import { Page } from '@playwright/test';
 
@@ -7,5 +8,10 @@ export class LevelSelectModal extends BaseModal {
 
   constructor(page: Page) {
     super(page);
+  }
+
+  async clickGoButton(): Promise<LevelPage> {
+    await this.goButton.click();
+    return new LevelPage(this.page);
   }
 }

@@ -17,8 +17,7 @@ export class HelpModal extends BaseModal {
     return new IntroPage(this.page);
   }
 
-  async clickDoneButton(): Promise<LevelPage> {
+  async clickDoneButton(): Promise<void> {
     await this.doneButton.click();
-    return new LevelPage(this.page);
   }
 }

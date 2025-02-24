@@ -1,9 +1,12 @@
 import { HelpModal } from '../modals/help.modal';
 import { BasePage } from './base.page';
 import { HubPage } from './hub.page';
+import { IntroPage } from './intro.page';
 import { Page } from '@playwright/test';
 
 export class MainMenuPage extends BasePage {
+  helpModal = new HelpModal(this.page);
+
   continueButton = this.page.locator('button', { hasText: 'Continue' });
   newGameButton = this.page.locator('button', { hasText: 'New Game' });
   settingsButton = this.page.locator('button', { hasText: 'Settings' });
@@ -15,9 +18,9 @@ export class MainMenuPage extends BasePage {
     super(page);
   }
 
-  async clickNewGameButton(): Promise<HelpModal> {
+  async clickNewGameButton(): Promise<IntroPage> {
     await this.newGameButton.click();
-    return new HelpModal(this.page);
+    return new IntroPage(this.page);
   }
 
   async clickContinueButton(): Promise<HubPage> {

@@ -22,48 +22,48 @@ test('Start Page', async ({ page }) => {
 
   // Act
   const mainMenuPage = await startPage.clickPlayButton();
-  const helpModal = await mainMenuPage.clickNewGameButton();
-  await helpModal.nextButton.click();
-  await helpModal.nextButton.click();
-  const introPage = await helpModal.clickLaunchButton();
+  const introPage = await mainMenuPage.clickNewGameButton();
+  await mainMenuPage.helpModal.nextButton.click();
+  await mainMenuPage.helpModal.nextButton.click();
+  await mainMenuPage.helpModal.clickLaunchButton();
   let hubPage = await introPage.clickSkipButton();
   const chatPage = await hubPage.clickVideoTabletBox();
   await chatPage.clickChatButton('Nice to meet you!');
   await chatPage.clickChatButton('No complaints.');
   await chatPage.clickChatButton('Where are you calling from?');
   await chatPage.clickChatButton("Let's go!");
-  let levelsModal = await hubPage.clickMonitorBox();
-  await levelsModal.goButton.click();
+  let levelSelectModal = await hubPage.clickMonitorBox();
+  let levelPage = await levelSelectModal.clickGoButton();
   await page
     .context()
     .storageState({ path: path.join(process.cwd(), 'saves/level00.json') });
-  await helpModal.nextButton.click();
-  await helpModal.nextButton.click();
-  const levelPage = await helpModal.clickDoneButton();
+  await levelPage.helpModal.nextButton.click();
+  await levelPage.helpModal.nextButton.click();
+  await levelPage.helpModal.clickDoneButton();
   await levelPage.textbox.clear();
   await levelPage.textbox.fill(level00Solution);
-  let levelEndModal = await levelPage.deployLevelSolution(7);
-  hubPage = await levelEndModal.clickBackToHubButton();
+  await levelPage.deployLevelSolution(7);
+  hubPage = await levelPage.levelEndModal.clickBackToHubButton();
   await hubPage.chatModal.clickChatButton('Thanks!');
   await hubPage.chatModal.clickChatButton('Where can I find the journal?');
   await hubPage.chatModal.clickChatButton('Got it!');
   const journalModal = await hubPage.clickJournalBox();
-  await helpModal.clickDoneButton();
+  await journalModal.helpModal.clickDoneButton();
   await journalModal.nextPageButton.click();
-  await journalModal.backToHubButton.click();
-  levelsModal = await hubPage.clickMonitorBox();
-  await levelsModal.goButton.click();
-  await helpModal.nextButton.click();
-  await helpModal.nextButton.click();
-  await helpModal.doneButton.click();
+  hubPage = await journalModal.clickBackToHubButton();
+  levelSelectModal = await hubPage.clickMonitorBox();
+  levelPage = await levelSelectModal.clickGoButton();
+  await levelPage.helpModal.nextButton.click();
+  await levelPage.helpModal.nextButton.click();
+  await levelPage.helpModal.doneButton.click();
   await levelPage.topMenu.clickHubButton();
   await hubPage.clickMonitorBox();
-  await levelsModal.goButton.click();
+  await levelSelectModal.goButton.click();
   await page
     .context()
     .storageState({ path: path.join(process.cwd(), 'saves/level01.json') });
   await levelPage.textbox.clear();
   await levelPage.textbox.fill(level01Solution);
-  levelEndModal = await levelPage.deployLevelSolution(11);
-  await levelEndModal.clickNextLevelButton();
+  await levelPage.deployLevelSolution(11);
+  await levelPage.levelEndModal.clickNextLevelButton();
 });
