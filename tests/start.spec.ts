@@ -14,7 +14,7 @@ test('Going through Elara levels', async ({ page }) => {
   let levelSelectModal: LevelSelectModal;
   let levelPage: LevelPage;
 
-  test.step('Intro and main menu', async () => {
+  await test.step('Intro and main menu', async () => {
     // Arrange
     const expectedLoginTitle = 'Elara';
     const expectedPlayButtonText = 'Play';
@@ -37,9 +37,10 @@ test('Going through Elara levels', async ({ page }) => {
     await mainMenuPage.helpModal.nextButton.click();
     await mainMenuPage.helpModal.clickLaunchButton();
     hubPage = await introPage.clickSkipButton();
+    console.log('AAA:', hubPage);
   });
 
-  test.step('Save level 00 storage state', async () => {
+  await test.step('Save level 00 storage state', async () => {
     const chatPage = await hubPage.clickVideoTabletBox();
     await chatPage.clickChatButton('Nice to meet you!');
     await chatPage.clickChatButton('No complaints.');
@@ -52,7 +53,7 @@ test('Going through Elara levels', async ({ page }) => {
       .storageState({ path: path.join(process.cwd(), 'saves/level00.json') });
   });
 
-  test.step('Save level 01 storage state', async () => {
+  await test.step('Save level 01 storage state', async () => {
     await levelPage.helpModal.nextButton.click();
     await levelPage.helpModal.nextButton.click();
     await levelPage.helpModal.clickDoneButton();
@@ -80,7 +81,7 @@ test('Going through Elara levels', async ({ page }) => {
       .storageState({ path: path.join(process.cwd(), 'saves/level01.json') });
   });
 
-  test.step('Save level 02 storage state', async () => {
+  await test.step('Save level 02 storage state', async () => {
     await levelPage.textbox.clear();
     await levelPage.textbox.fill(level01Solution);
     await levelPage.deployLevelSolution(11);
