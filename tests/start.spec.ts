@@ -1,5 +1,6 @@
 import { level00Solution } from '../data/level00.data';
 import { level01Solution } from '../data/level01.data';
+import { level02Solution } from '../data/level02.data';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { HubPage } from '../pages/hub.page';
@@ -37,7 +38,6 @@ test('Going through Elara levels', async ({ page }) => {
     await mainMenuPage.helpModal.nextButton.click();
     await mainMenuPage.helpModal.clickLaunchButton();
     hubPage = await introPage.clickSkipButton();
-    console.log('AAA:', hubPage);
   });
 
   await test.step('Save level 00 storage state', async () => {
@@ -86,5 +86,24 @@ test('Going through Elara levels', async ({ page }) => {
     await levelPage.textbox.fill(level01Solution);
     await levelPage.deployLevelSolution(11);
     await levelPage.levelEndModal.clickNextLevelButton();
+    await levelPage.helpModal.nextButton.click();
+    await levelPage.helpModal.clickDoneButton();
+    await levelPage.textbox.clear();
+    await levelPage.textbox.fill(level02Solution);
+    await levelPage.deployLevelSolution(13);
+    hubPage = await levelPage.levelEndModal.clickBackToHubButton();
+    journalModal = await hubPage.clickJournalBox();
+    await journalModal.nextPageButton.click();
+    hubPage = await journalModal.clickBackToHubButton();
+    levelSelectModal = await hubPage.clickMonitorBox();
+    levelPage = await levelSelectModal.clickGoButton();
+    await levelPage.helpModal.nextButton.click();
+    await levelPage.helpModal.clickDoneButton();
+    await levelPage.topMenu.clickHubButton();
+    await hubPage.clickMonitorBox();
+    await levelSelectModal.goButton.click();
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level02.json') });
   });
 });

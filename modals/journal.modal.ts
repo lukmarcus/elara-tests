@@ -8,6 +8,8 @@ export class JournalModal extends BaseModal {
 
   functionsButton = this.page.locator('button', { hasText: 'Functions' });
   commentsButton = this.page.locator('button', { hasText: 'Comments' });
+  stringsButton = this.page.locator('button', { hasText: 'Strings' });
+  loopsButton = this.page.locator('button', { hasText: 'Loops' });
 
   backToHubButton = this.page.locator('button', { hasText: 'Back to Hub' });
   nextPageButton = this.page.locator('button', { hasText: 'Next Page' });
