@@ -1,4 +1,5 @@
 import { TopMenuComponent } from '../components/top-menu.component';
+import { ChatModal } from '../modals/chat.modal';
 import { HelpModal } from '../modals/help.modal';
 import { LevelEndModal } from '../modals/level-end.modal';
 import { BasePage } from './base.page';
@@ -8,6 +9,7 @@ export class LevelPage extends BasePage {
   topMenu = new TopMenuComponent(this.page);
   helpModal = new HelpModal(this.page);
   levelEndModal = new LevelEndModal(this.page);
+  chatModal = new ChatModal(this.page);
 
   deployButton = this.page.locator('button', { hasText: 'Deploy' });
   resetButton = this.page.locator('button', { hasText: 'Reset' });
@@ -29,5 +31,12 @@ export class LevelPage extends BasePage {
     }
 
     return new LevelEndModal(this.page);
+  }
+
+  async resetLevelPage(): Promise<LevelPage> {
+    const hubPage = await this.topMenu.clickHubButton();
+    const levelSelectModal = await hubPage.clickMonitorBox();
+    await levelSelectModal.goButton.click();
+    return new LevelPage(this.page);
   }
 }
