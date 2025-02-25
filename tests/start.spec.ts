@@ -1,6 +1,7 @@
 import { level00Solution } from '../data/level00.data';
 import { level01Solution } from '../data/level01.data';
 import { level02Solution } from '../data/level02.data';
+import { level03Solution } from '../data/level03.data';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { HubPage } from '../pages/hub.page';
@@ -88,6 +89,12 @@ test('Going through Elara levels', async ({ page }) => {
     await levelPage.levelEndModal.clickNextLevelButton();
     await levelPage.helpModal.nextButton.click();
     await levelPage.helpModal.clickDoneButton();
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level02.json') });
+  });
+
+  await test.step('Save level 03 storage state', async () => {
     await levelPage.textbox.clear();
     await levelPage.textbox.fill(level02Solution);
     await levelPage.deployLevelSolution(13);
@@ -104,6 +111,15 @@ test('Going through Elara levels', async ({ page }) => {
     await levelSelectModal.goButton.click();
     await page
       .context()
-      .storageState({ path: path.join(process.cwd(), 'saves/level02.json') });
+      .storageState({ path: path.join(process.cwd(), 'saves/level03.json') });
+  });
+
+  await test.step('Save level 04 storage state', async () => {
+    await levelPage.textbox.clear();
+    await levelPage.textbox.fill(level03Solution);
+
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level04.json') });
   });
 });
