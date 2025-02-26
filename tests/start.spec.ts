@@ -8,6 +8,7 @@ import { level06Solution } from '../data/level06.data';
 import { level07Solution } from '../data/level07.data';
 import { level08Solution } from '../data/level08.data';
 import { level09Solution } from '../data/level09.data';
+import { level10Solution } from '../data/level10.data';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { HubPage } from '../pages/hub.page';
@@ -215,5 +216,19 @@ test('Going through Elara levels', async ({ page }) => {
     await page
       .context()
       .storageState({ path: path.join(process.cwd(), 'saves/level10.json') });
+  });
+
+  await test.step('Save level 11 storage state', async () => {
+    await levelPage.textbox.clear();
+    await levelPage.textbox.fill(level10Solution);
+    await levelPage.deployLevelSolution(8);
+    hubPage = await levelPage.levelEndModal.clickBackToHubButton();
+    journalModal = await hubPage.clickJournalBox();
+    hubPage = await journalModal.clickBackToHubButton();
+    levelSelectModal = await hubPage.clickMonitorBox();
+    levelPage = await levelSelectModal.clickGoButton();
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level11.json') });
   });
 });
