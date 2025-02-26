@@ -7,6 +7,7 @@ import { level05Solution } from '../data/level05.data';
 import { level06Solution } from '../data/level06.data';
 import { level07Solution } from '../data/level07.data';
 import { level08Solution } from '../data/level08.data';
+import { level09Solution } from '../data/level09.data';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { HubPage } from '../pages/hub.page';
@@ -16,6 +17,8 @@ import { expect, test } from '@playwright/test';
 import * as path from 'path';
 
 test('Going through Elara levels', async ({ page }) => {
+  test.setTimeout(60_000);
+
   let hubPage: HubPage;
   let journalModal: JournalModal;
   let levelSelectModal: LevelSelectModal;
@@ -197,5 +200,20 @@ test('Going through Elara levels', async ({ page }) => {
     await page
       .context()
       .storageState({ path: path.join(process.cwd(), 'saves/level09.json') });
+  });
+
+  await test.step('Save level 10 storage state', async () => {
+    await levelPage.textbox.clear();
+    await levelPage.textbox.fill(level09Solution);
+    await levelPage.deployLevelSolution(7);
+    await levelPage.levelEndModal.clickNextLevelButton();
+    await levelPage.chatModal.clickChatButton(
+      'How do I figure out the password?',
+    );
+    await levelPage.chatModal.clickChatButton('Got it, thanks!');
+    await levelPage.resetLevelPage();
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level10.json') });
   });
 });
