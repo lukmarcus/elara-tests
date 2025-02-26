@@ -6,6 +6,7 @@ import { level04Solution } from '../data/level04.data';
 import { level05Solution } from '../data/level05.data';
 import { level06Solution } from '../data/level06.data';
 import { level07Solution } from '../data/level07.data';
+import { level08Solution } from '../data/level08.data';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { HubPage } from '../pages/hub.page';
@@ -175,5 +176,26 @@ test('Going through Elara levels', async ({ page }) => {
     await page
       .context()
       .storageState({ path: path.join(process.cwd(), 'saves/level08.json') });
+  });
+
+  await test.step('Save level 09 storage state', async () => {
+    await levelPage.textbox.clear();
+    await levelPage.textbox.fill(level08Solution);
+    await levelPage.deployLevelSolution(23);
+    hubPage = await levelPage.levelEndModal.clickBackToHubButton();
+    journalModal = await hubPage.clickJournalBox();
+    await journalModal.helpModal.nextButton.click();
+    await journalModal.helpModal.clickDoneButton();
+    hubPage = await journalModal.clickBackToHubButton();
+    levelSelectModal = await hubPage.clickMonitorBox();
+    levelPage = await levelSelectModal.clickGoButton();
+    await levelPage.chatModal.clickChatButton('What is it?');
+    await levelPage.chatModal.clickChatButton("What's a data point?");
+    await levelPage.chatModal.clickChatButton('Understood.');
+    await levelPage.chatModal.clickChatButton('No problem!');
+    await levelPage.resetLevelPage();
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level09.json') });
   });
 });
