@@ -11,6 +11,7 @@ import { level09Solution } from '../data/level09.data';
 import { level10Solution } from '../data/level10.data';
 import { level11Solution } from '../data/level11.data';
 import { level12Solution } from '../data/level12.data';
+import { level13Solution } from '../data/level13.data';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { HubPage } from '../pages/hub.page';
@@ -263,5 +264,27 @@ test('Going through Elara levels', async ({ page }) => {
     await page
       .context()
       .storageState({ path: path.join(process.cwd(), 'saves/level13.json') });
+  });
+
+  await test.step('Save level 13 storage state', async () => {
+    await levelPage.textbox.clear();
+    await levelPage.textbox.fill(level13Solution);
+    await levelPage.deployLevelSolution(8);
+    hubPage = await levelPage.levelEndModal.clickBackToHubButton();
+    journalModal = await hubPage.clickJournalBox();
+    await journalModal.nextPageButton.click();
+    hubPage = await journalModal.clickBackToHubButton();
+    levelSelectModal = await hubPage.clickMonitorBox();
+    levelPage = await levelSelectModal.clickGoButton();
+    await levelPage.chatModal.clickChatButton(
+      'How do I avoid the falling asteroids?',
+    );
+    await levelPage.chatModal.clickChatButton(
+      "Okay. That doesn't sound too hard.",
+    );
+    await levelPage.chatModal.clickChatButton("Got it. Let's do this!");
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level14.json') });
   });
 });
