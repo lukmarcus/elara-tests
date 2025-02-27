@@ -13,9 +13,12 @@ import { level11Solution } from '../data/level11.data';
 import { level12Solution } from '../data/level12.data';
 import { level13Solution } from '../data/level13.data';
 import { level14Solution } from '../data/level14.data';
+import { level15Solution } from '../data/level15.data';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
+import { ChatPage } from '../pages/chat.page';
 import { HubPage } from '../pages/hub.page';
+import { IntroPage } from '../pages/intro.page';
 import { LevelPage } from '../pages/level.page';
 import { StartPage } from '../pages/start.page';
 import { expect, test } from '@playwright/test';
@@ -28,6 +31,7 @@ test('Going through Elara levels', async ({ page }) => {
   let journalModal: JournalModal;
   let levelSelectModal: LevelSelectModal;
   let levelPage: LevelPage;
+  let introPage: IntroPage;
 
   await test.step('Intro and main menu', async () => {
     // Arrange
@@ -284,6 +288,7 @@ test('Going through Elara levels', async ({ page }) => {
       "Okay. That doesn't sound too hard.",
     );
     await levelPage.chatModal.clickChatButton("Got it. Let's do this!");
+    await levelPage.resetLevelPage();
     await page
       .context()
       .storageState({ path: path.join(process.cwd(), 'saves/level14.json') });
@@ -297,5 +302,22 @@ test('Going through Elara levels', async ({ page }) => {
     await page
       .context()
       .storageState({ path: path.join(process.cwd(), 'saves/level15.json') });
+  });
+
+  await test.step('Save level 15 storage state', async () => {
+    await levelPage.textbox.clear();
+    await levelPage.textbox.fill(level15Solution);
+    await levelPage.deployLevelSolution(9);
+    introPage = await levelPage.levelEndModal.clickPlayCutsceneButton();
+    hubPage = await introPage.clickSkipButton();
+    levelSelectModal = await hubPage.clickMonitorBox();
+    levelPage = await levelSelectModal.clickGoButton();
+    await levelPage.chatModal.clickChatButton('What kind of damage?');
+    await levelPage.chatModal.clickChatButton('What does that mean exactly?');
+    await levelPage.chatModal.clickChatButton("Okay, let's do this!");
+    await levelPage.resetLevelPage();
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level16.json') });
   });
 });
