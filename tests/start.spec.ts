@@ -75,9 +75,7 @@ test('Going through Elara levels', async ({ page }) => {
     await levelPage.helpModal.nextButton.click();
     await levelPage.helpModal.nextButton.click();
     await levelPage.helpModal.clickDoneButton();
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level00Solution);
-    await levelPage.deployLevelSolution(7);
+    await levelPage.deployLevelSolution(level00Solution);
     hubPage = await levelPage.levelEndModal.clickBackToHubButton();
     await hubPage.chatModal.clickChatButton('Thanks!');
     await hubPage.chatModal.clickChatButton('Where can I find the journal?');
@@ -98,9 +96,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 02 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level01Solution);
-    await levelPage.deployLevelSolution(11);
+    await levelPage.deployLevelSolution(level01Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await levelPage.helpModal.nextButton.click();
     await levelPage.helpModal.clickDoneButton();
@@ -110,9 +106,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 03 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level02Solution);
-    await levelPage.deployLevelSolution(13);
+    await levelPage.deployLevelSolution(level02Solution);
     hubPage = await levelPage.levelEndModal.clickBackToHubButton();
     journalModal = await hubPage.clickJournalBox();
     await journalModal.nextPageButton.click();
@@ -128,9 +122,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 04 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level03Solution);
-    await levelPage.deployLevelSolution(29);
+    await levelPage.deployLevelSolution(level03Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await levelPage.chatModal.clickChatButton('What is it?');
     await levelPage.chatModal.clickChatButton("I'll keep an eye out.");
@@ -141,9 +133,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 05 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level04Solution);
-    await levelPage.deployLevelSolution(24);
+    await levelPage.deployLevelSolution(level04Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await levelPage.chatModal.clickChatButton('Oh no! What do I do now?');
     await levelPage.chatModal.clickChatButton('Sounds easy enough!');
@@ -157,9 +147,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 06 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level05Solution);
-    await levelPage.deployLevelSolution(13);
+    await levelPage.deployLevelSolution(level05Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await page
       .context()
@@ -167,9 +155,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 07 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level06Solution);
-    await levelPage.deployLevelSolution(16);
+    await levelPage.deployLevelSolution(level06Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await levelPage.chatModal.clickChatButton("Let's go!");
     await levelPage.helpModal.nextButton.click();
@@ -181,9 +167,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 08 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level07Solution);
-    await levelPage.deployLevelSolution(8);
+    await levelPage.deployLevelSolution(level07Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await page
       .context()
@@ -191,9 +175,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 09 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level08Solution);
-    await levelPage.deployLevelSolution(23);
+    await levelPage.deployLevelSolution(level08Solution);
     hubPage = await levelPage.levelEndModal.clickBackToHubButton();
     journalModal = await hubPage.clickJournalBox();
     await journalModal.helpModal.nextButton.click();
@@ -212,9 +194,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 10 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level09Solution);
-    await levelPage.deployLevelSolution(7);
+    await levelPage.deployLevelSolution(level09Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await levelPage.chatModal.clickChatButton(
       'How do I figure out the password?',
@@ -227,9 +207,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 11 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level10Solution);
-    await levelPage.deployLevelSolution(8);
+    await levelPage.deployLevelSolution(level10Solution);
     hubPage = await levelPage.levelEndModal.clickBackToHubButton();
     journalModal = await hubPage.clickJournalBox();
     hubPage = await journalModal.clickBackToHubButton();
@@ -241,9 +219,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 11 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level11Solution);
-    await levelPage.deployLevelSolution(30);
+    await levelPage.deployLevelSolution(level11Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await levelPage.chatModal.clickChatButton('Oh no! How can I get through?');
     await levelPage.chatModal.clickChatButton('I see...');
@@ -256,9 +232,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 12 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level12Solution);
-    await levelPage.deployLevelSolution(7);
+    await levelPage.deployLevelSolution(level12Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await levelPage.chatModal.clickChatButton('Yeah, I see it too.');
     await levelPage.chatModal.clickChatButton(
@@ -272,9 +246,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 13 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level13Solution);
-    await levelPage.deployLevelSolution(8);
+    await levelPage.deployLevelSolution(level13Solution);
     hubPage = await levelPage.levelEndModal.clickBackToHubButton();
     journalModal = await hubPage.clickJournalBox();
     await journalModal.nextPageButton.click();
@@ -295,9 +267,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 14 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level14Solution);
-    await levelPage.deployLevelSolution(8);
+    await levelPage.deployLevelSolution(level14Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await page
       .context()
@@ -305,9 +275,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 15 storage state', async () => {
-    await levelPage.textbox.clear();
-    await levelPage.textbox.fill(level15Solution);
-    await levelPage.deployLevelSolution(9);
+    await levelPage.deployLevelSolution(level15Solution);
     introPage = await levelPage.levelEndModal.clickPlayCutsceneButton();
     hubPage = await introPage.clickSkipButton();
     levelSelectModal = await hubPage.clickMonitorBox();

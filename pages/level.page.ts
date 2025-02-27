@@ -17,16 +17,22 @@ export class LevelPage extends BasePage {
   backwardButton = this.page.locator('.control-bar button').nth(1);
   playPauseButton = this.page.locator('.control-bar button').nth(2);
   forwardButton = this.page.locator('.control-bar button').nth(3);
+  stepsCountText = this.page.locator('.control-bar span.chakra-text');
   textbox = this.page.getByRole('textbox');
 
   constructor(page: Page) {
     super(page);
   }
 
-  async deployLevelSolution(steps: number): Promise<LevelEndModal> {
-    await this.deployButton.click();
+  async deployLevelSolution(solution: string): Promise<LevelEndModal> {
+    await this.textbox.clear();
+    await this.textbox.fill(solution);
 
-    for (let i = 0; i <= steps; i++) {
+    await this.deployButton.click();
+    const stepsText = (await this.stepsCountText.textContent()) ?? '0/0';
+    const stepsCount = parseInt(stepsText.split('/')[1], 10);
+
+    for (let i = 0; i <= stepsCount; i++) {
       await this.forwardButton.click();
     }
 
