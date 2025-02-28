@@ -17,6 +17,7 @@ import { level15Solution } from '../data/level15.data';
 import { level16Solution } from '../data/level16.data';
 import { level17Solution } from '../data/level17.data';
 import { level18Solution } from '../data/level18.data';
+import { level19Solution } from '../data/level19.data';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { ChatPage } from '../pages/chat.page';
@@ -221,7 +222,7 @@ test('Going through Elara levels', async ({ page }) => {
       .storageState({ path: path.join(process.cwd(), 'saves/level11.json') });
   });
 
-  await test.step('Save level 11 storage state', async () => {
+  await test.step('Save level 12 storage state', async () => {
     await levelPage.deployLevelSolution(level11Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await levelPage.chatModal.clickChatButton('Oh no! How can I get through?');
@@ -234,7 +235,7 @@ test('Going through Elara levels', async ({ page }) => {
       .storageState({ path: path.join(process.cwd(), 'saves/level12.json') });
   });
 
-  await test.step('Save level 12 storage state', async () => {
+  await test.step('Save level 13 storage state', async () => {
     await levelPage.deployLevelSolution(level12Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await levelPage.chatModal.clickChatButton('Yeah, I see it too.');
@@ -248,7 +249,7 @@ test('Going through Elara levels', async ({ page }) => {
       .storageState({ path: path.join(process.cwd(), 'saves/level13.json') });
   });
 
-  await test.step('Save level 13 storage state', async () => {
+  await test.step('Save level 14 storage state', async () => {
     await levelPage.deployLevelSolution(level13Solution);
     hubPage = await levelPage.levelEndModal.clickBackToHubButton();
     journalModal = await hubPage.clickJournalBox();
@@ -269,7 +270,7 @@ test('Going through Elara levels', async ({ page }) => {
       .storageState({ path: path.join(process.cwd(), 'saves/level14.json') });
   });
 
-  await test.step('Save level 14 storage state', async () => {
+  await test.step('Save level 15 storage state', async () => {
     await levelPage.deployLevelSolution(level14Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await page
@@ -277,7 +278,7 @@ test('Going through Elara levels', async ({ page }) => {
       .storageState({ path: path.join(process.cwd(), 'saves/level15.json') });
   });
 
-  await test.step('Save level 15 storage state', async () => {
+  await test.step('Save level 16 storage state', async () => {
     await levelPage.deployLevelSolution(level15Solution);
     introPage = await levelPage.levelEndModal.clickPlayCutsceneButton();
     hubPage = await introPage.clickSkipButton();
@@ -292,7 +293,7 @@ test('Going through Elara levels', async ({ page }) => {
       .storageState({ path: path.join(process.cwd(), 'saves/level16.json') });
   });
 
-  await test.step('Save level 16 storage state', async () => {
+  await test.step('Save level 17 storage state', async () => {
     await levelPage.deployLevelSolution(level16Solution);
     hubPage = await levelPage.levelEndModal.clickBackToHubButton();
     journalModal = await hubPage.clickJournalBox();
@@ -308,7 +309,7 @@ test('Going through Elara levels', async ({ page }) => {
       .storageState({ path: path.join(process.cwd(), 'saves/level17.json') });
   });
 
-  await test.step('Save level 17 storage state', async () => {
+  await test.step('Save level 18 storage state', async () => {
     await levelPage.deployLevelSolution(level17Solution);
     introPage = await levelPage.levelEndModal.clickPlayCutsceneButton();
     hubPage = await introPage.clickSkipButton();
@@ -324,11 +325,30 @@ test('Going through Elara levels', async ({ page }) => {
       .storageState({ path: path.join(process.cwd(), 'saves/level18.json') });
   });
 
-  await test.step('Save level 18 storage state', async () => {
+  await test.step('Save level 19 storage state', async () => {
     await levelPage.deployLevelSolution(level18Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
     await page
       .context()
       .storageState({ path: path.join(process.cwd(), 'saves/level19.json') });
+  });
+
+  await test.step('Save level 20 storage state', async () => {
+    await levelPage.deployLevelSolution(level19Solution);
+    hubPage = await levelPage.levelEndModal.clickBackToHubButton();
+    journalModal = await hubPage.clickJournalBox();
+    hubPage = await journalModal.clickBackToHubButton();
+    levelSelectModal = await hubPage.clickMonitorBox();
+    levelPage = await levelSelectModal.clickGoButton();
+    await levelPage.chatModal.clickChatButton('Tell me about it...');
+    await levelPage.chatModal.clickChatButton(
+      "I don't get it. What do you mean?",
+    );
+    await levelPage.chatModal.clickChatButton("I see! That's pretty clever.");
+    await levelPage.chatModal.clickChatButton('Awesome, thanks!');
+    await levelPage.resetLevelPage();
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level20.json') });
   });
 });
