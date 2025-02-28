@@ -16,6 +16,7 @@ import { level14Solution } from '../data/level14.data';
 import { level15Solution } from '../data/level15.data';
 import { level16Solution } from '../data/level16.data';
 import { level17Solution } from '../data/level17.data';
+import { level18Solution } from '../data/level18.data';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { ChatPage } from '../pages/chat.page';
@@ -321,5 +322,13 @@ test('Going through Elara levels', async ({ page }) => {
     await page
       .context()
       .storageState({ path: path.join(process.cwd(), 'saves/level18.json') });
+  });
+
+  await test.step('Save level 18 storage state', async () => {
+    await levelPage.deployLevelSolution(level18Solution);
+    await levelPage.levelEndModal.clickNextLevelButton();
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level19.json') });
   });
 });
