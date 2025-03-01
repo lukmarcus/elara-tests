@@ -29,7 +29,7 @@ import { expect, test } from '@playwright/test';
 import * as path from 'path';
 
 test('Going through Elara levels', async ({ page }) => {
-  test.setTimeout(60_000);
+  test.setTimeout(120_000);
 
   let hubPage: HubPage;
   let journalModal: JournalModal;
@@ -350,5 +350,13 @@ test('Going through Elara levels', async ({ page }) => {
     await page
       .context()
       .storageState({ path: path.join(process.cwd(), 'saves/level20.json') });
+  });
+
+  await test.step('Save level 21 storage state', async () => {
+    await levelPage.deployLevelSolution(level02Solution);
+    await levelPage.levelEndModal.clickNextLevelButton();
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level21.json') });
   });
 });
