@@ -20,6 +20,7 @@ import { level18Solution } from '../data/level18.data';
 import { level19Solution } from '../data/level19.data';
 import { level20Solution } from '../data/level20.data';
 import { level21Solution } from '../data/level21.data';
+import { level22Solution } from '../data/level22.data';
 import { JournalModal } from '../modals/journal.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { ChatPage } from '../pages/chat.page';
@@ -38,6 +39,7 @@ test('Going through Elara levels', async ({ page }) => {
   let levelSelectModal: LevelSelectModal;
   let levelPage: LevelPage;
   let introPage: IntroPage;
+  let chatPage: ChatPage;
 
   await test.step('Intro and main menu', async () => {
     // Arrange
@@ -65,7 +67,7 @@ test('Going through Elara levels', async ({ page }) => {
   });
 
   await test.step('Save level 00 storage state', async () => {
-    const chatPage = await hubPage.clickVideoTabletBox();
+    chatPage = await hubPage.clickVideoTabletBox();
     await chatPage.clickChatButton('Nice to meet you!');
     await chatPage.clickChatButton('No complaints.');
     await chatPage.clickChatButton('Where are you calling from?');
@@ -365,8 +367,39 @@ test('Going through Elara levels', async ({ page }) => {
   await test.step('Save level 22 storage state', async () => {
     await levelPage.deployLevelSolution(level21Solution);
     await levelPage.levelEndModal.clickNextLevelButton();
+    await levelPage.chatModal.clickChatButton(
+      'Why are these rovers malfunctioning?',
+    );
+    await levelPage.chatModal.clickChatButton(
+      'I see. Hopefully you can figure it out soon.',
+    );
+    await levelPage.chatModal.clickChatButton(
+      "No, that's all I need to know for now.",
+    );
+    await levelPage.chatModal.clickChatButton("Okay, I'll do my best!");
+    await levelPage.resetLevelPage();
     await page
       .context()
       .storageState({ path: path.join(process.cwd(), 'saves/level22.json') });
+  });
+
+  await test.step('Save level 23 storage state', async () => {
+    await levelPage.deployLevelSolution(level22Solution);
+    introPage = await levelPage.levelEndModal.clickPlayCutsceneButton();
+    hubPage = await introPage.clickSkipButton();
+    chatPage = await hubPage.clickVideoTabletBox();
+    await chatPage.clickChatButton('What happened?');
+    await chatPage.clickChatButton('Are you safe?');
+    await chatPage.clickChatButton('Is there anything I can do to help?');
+    await chatPage.clickChatButton('Right. So what can we do?');
+    await chatPage.clickChatButton('Wait... do you mean ALL the rovers?');
+    await chatPage.clickChatButton("Okay, I'll do it.");
+    await chatPage.clickChatButton('Tell me about it...');
+    await chatPage.clickChatButton('No time to waste!');
+    levelSelectModal = await hubPage.clickMonitorBox();
+    levelPage = await levelSelectModal.clickGoButton();
+    await page
+      .context()
+      .storageState({ path: path.join(process.cwd(), 'saves/level23.json') });
   });
 });
