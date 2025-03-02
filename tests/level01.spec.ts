@@ -1,8 +1,7 @@
 import { StartPage } from '../pages/start.page';
-import { test } from '@playwright/test';
-import * as path from 'path';
+import { useStorageState } from '../utils/storage-state.util';
 
-test.use({ storageState: path.resolve(process.cwd(), 'saves/level01.json') });
+const test = useStorageState('level01');
 
 test.beforeEach(async ({ page }) => {
   const startPage = new StartPage(page);

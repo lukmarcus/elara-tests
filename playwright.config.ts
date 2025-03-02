@@ -28,7 +28,8 @@ export default defineConfig({
     baseURL: 'https://play.elaragame.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
+    video: 'off',
   },
 
   /* Configure projects for major browsers */
