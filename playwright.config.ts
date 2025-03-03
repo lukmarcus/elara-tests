@@ -35,9 +35,18 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'setup',
+      grep: /@setup/,
     },
+    {
+      name: 'e2e',
+      grepInvert: /@setup/,
+    },
+
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] },
+    // },
 
     // {
     //   name: 'firefox',
