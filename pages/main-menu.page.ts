@@ -1,4 +1,5 @@
 import { HelpModal } from '../modals/help.modal';
+import { SettingsModal } from '../modals/settings.modal';
 import { BasePage } from './base.page';
 import { HubPage } from './hub.page';
 import { IntroPage } from './intro.page';
@@ -26,5 +27,10 @@ export class MainMenuPage extends BasePage {
   async clickContinueButton(): Promise<HubPage> {
     await this.continueButton.click();
     return new HubPage(this.page);
+  }
+
+  async clickSettingsButton(): Promise<SettingsModal> {
+    await this.settingsButton.click();
+    return new SettingsModal(this.page);
   }
 }
