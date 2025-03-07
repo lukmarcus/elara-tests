@@ -16,9 +16,10 @@ test.describe('Level 00', async () => {
   });
 
   test('Level 00', async () => {
+    expect(await hubPage.journalBox.innerHTML()).toBe('');
     await expect(hubPage.monitorBox.locator('.chakra-text')).toHaveText(
       'New Levels!',
     );
-    await expect(hubPage.journalBox).toBeEnabled();
+    expect(await hubPage.journalBox.innerHTML()).toBe('');
   });
 });
