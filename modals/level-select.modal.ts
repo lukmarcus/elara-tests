@@ -1,13 +1,38 @@
 import { LevelPage } from '../pages/level.page';
 import { BaseModal } from './base.modal';
-import { Page } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 
 export class LevelSelectModal extends BaseModal {
+  modal = this.page.locator('#level-select-modal-body');
+  leftColumn = this.modal.locator('.chakra-stack').first();
+  rightColumn = this.modal.locator('.chakra-stack').last();
+
+  // Left column locators
+  chooseLevelHeader = this.leftColumn.locator('>div').nth(0);
+  levelList = this.leftColumn.locator('>div').nth(1);
+  levelButton = this.levelList.locator('button');
+
+  // Right column locators
   goButton = this.page.locator('button', { hasText: 'Go!' });
   level0Button = this.page.locator('p', { hasText: '0: First Steps' });
 
   constructor(page: Page) {
     super(page);
+  }
+
+  async checkNewBadgeInLevelList(level: number): Promise<void> {
+    const expectedNewBadgeText = 'New';
+    for (let i = 0; i < 28; i++) {
+      if (i === level) {
+        await expect(
+          this.levelButton.nth(i).locator('.chakra-badge'),
+        ).toHaveText(expectedNewBadgeText);
+      } else {
+        await expect(
+          this.levelButton.nth(i).locator('.chakra-badge'),
+        ).toHaveCount(0);
+      }
+    }
   }
 
   async clickGoButton(): Promise<LevelPage> {
