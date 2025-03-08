@@ -3,6 +3,7 @@ import { BaseModal } from './base.modal';
 import { Page, expect } from '@playwright/test';
 
 export class LevelSelectModal extends BaseModal {
+  numberOfLevels = 28;
   modal = this.page.locator('#level-select-modal-body');
   leftColumn = this.modal.locator('.chakra-stack').first();
   rightColumn = this.modal.locator('.chakra-stack').last();
@@ -13,8 +14,7 @@ export class LevelSelectModal extends BaseModal {
   levelButton = this.levelList.locator('button');
 
   // Right column locators
-  goButton = this.page.locator('button', { hasText: 'Go!' });
-  level0Button = this.page.locator('p', { hasText: '0: First Steps' });
+  goButton = this.rightColumn.locator('button');
 
   constructor(page: Page) {
     super(page);
