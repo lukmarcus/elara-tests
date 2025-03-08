@@ -28,9 +28,17 @@ export class LevelSelectModal extends BaseModal {
         await expect(levelBadge).toHaveCount(1);
         await expect(levelBadge).toHaveText(expectedNewBadgeText);
       } else {
-        await expect(
-          this.levelButton.nth(i).locator('.chakra-badge'),
-        ).toHaveCount(0);
+        await expect(levelBadge).toHaveCount(0);
+      }
+    }
+  }
+
+  async checkEnabledLevelsInLevelList(level: number): Promise<void> {
+    for (let i = 0; i < this.numberOfLevels; i++) {
+      if (i <= level) {
+        await expect(this.levelButton.nth(i)).toBeEnabled();
+      } else {
+        await expect(this.levelButton.nth(i)).toBeDisabled();
       }
     }
   }
