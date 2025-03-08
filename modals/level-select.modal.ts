@@ -22,11 +22,11 @@ export class LevelSelectModal extends BaseModal {
 
   async checkNewBadgeInLevelList(level: number): Promise<void> {
     const expectedNewBadgeText = 'New';
-    for (let i = 0; i < 28; i++) {
+    for (let i = 0; i < this.numberOfLevels; i++) {
+      const levelBadge = this.levelButton.nth(i).locator('.chakra-badge');
       if (i === level) {
-        await expect(
-          this.levelButton.nth(i).locator('.chakra-badge'),
-        ).toHaveText(expectedNewBadgeText);
+        await expect(levelBadge).toHaveCount(1);
+        await expect(levelBadge).toHaveText(expectedNewBadgeText);
       } else {
         await expect(
           this.levelButton.nth(i).locator('.chakra-badge'),
