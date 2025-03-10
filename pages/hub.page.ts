@@ -11,8 +11,11 @@ export class HubPage extends BasePage {
   chatModal = new ChatModal(this.page);
 
   videoTabletBox = this.page.locator('#video-tablet-box');
+  videoTabletBoxImage = this.page.locator("[src*='/assets/hub_video_tablet']");
   monitorBox = this.page.locator('#monitor-box');
+  monitorBoxImage = this.page.locator("[src*='/assets/hub_monitor']");
   journalBox = this.page.locator('#journal-box');
+  journalBoxImage = this.page.locator("[src*='/assets/hub_journal']");
 
   constructor(page: Page) {
     super(page);
