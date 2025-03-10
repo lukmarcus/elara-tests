@@ -3,7 +3,7 @@ import { BaseModal } from './base.modal';
 import { Page, expect } from '@playwright/test';
 
 export class LevelSelectModal extends BaseModal {
-  modal = this.page.locator('role="dialog"');
+  modal = this.page.locator('[role="dialog"]');
   closeButton = this.modal.locator('[aria-label="Close"]');
   body = this.modal.locator('#level-select-modal-body');
   leftColumn = this.body.locator('.chakra-stack').first();

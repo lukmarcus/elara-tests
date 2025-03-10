@@ -5,6 +5,7 @@ export async function saveStorageState(
   page: Page,
   fileName: string,
 ): Promise<void> {
+  await page.waitForTimeout(100);
   await page
     .context()
     .storageState({ path: path.join(process.cwd(), `saves/${fileName}.json`) });
