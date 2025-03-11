@@ -1,4 +1,4 @@
-import { HubPage } from '../pages/hub.page';
+import { HubElement, HubPage } from '../pages/hub.page';
 import { StartPage } from '../pages/start.page';
 import { useStorageState } from '../utils/storage-state.util';
 import { expect } from '@playwright/test';
@@ -16,38 +16,13 @@ test.describe('Level 00', async () => {
   });
 
   test('should check elements in hub page', async () => {
-    await expect(hubPage.videoTabletBoxImage).toHaveAttribute(
-      'style',
-      'filter: brightness(0.4);',
+    const expectedMonitorMessage = 'New Levels!';
+    await hubPage.checkIfHubElementIsInactive(HubElement.VideoTablet);
+    await hubPage.checkIfHubElementIsActive(
+      HubElement.Monitor,
+      expectedMonitorMessage,
     );
-    expect(await hubPage.videoTabletBox.innerHTML()).toBe('');
-
-    await expect(hubPage.journalBoxImage).toHaveAttribute(
-      'style',
-      'filter: brightness(0.4);',
-    );
-    expect(await hubPage.journalBox.innerHTML()).toBe('');
-
-    await expect(hubPage.monitorBox.locator('.chakra-text')).toHaveText(
-      'New Levels!',
-    );
-    await expect(hubPage.monitorBoxImage).not.toHaveAttribute(
-      'style',
-      'filter: brightness(0.4);',
-    );
-    await expect(hubPage.monitorBoxImage).not.toHaveAttribute(
-      'style',
-      'filter: brightness(0.4);',
-    );
-    await expect(hubPage.monitorBoxImage).toHaveAttribute(
-      'style',
-      'filter: drop-shadow(0px 0px 15px var(--chakra-colors-yellow-400)) brightness(0.9);',
-    );
-    await hubPage.monitorBox.hover();
-    await expect(hubPage.monitorBoxImage).toHaveAttribute(
-      'style',
-      'filter: drop-shadow(white 0px 0px 20px);',
-    );
+    await hubPage.checkIfHubElementIsInactive(HubElement.Journal);
   });
 
   test('should check elements in level select', async () => {
