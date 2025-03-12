@@ -27,7 +27,17 @@ test.describe('Level 00', async () => {
 
   test('should check elements in level select', async () => {
     const levelSelectModal = await hubPage.clickMonitorBox();
-    await levelSelectModal.checkNewBadgeInLevelList(0);
-    await levelSelectModal.checkEnabledLevelsInLevelList(0);
+    const levelNumber = 0;
+    const expectedLevelName = 'Level 0: First Steps';
+    const expectedLevelObjective =
+      'Objective: Move the rover () to the goal ().';
+
+    await levelSelectModal.checkNewBadgeInLevelList(levelNumber);
+    await levelSelectModal.checkEnabledLevelsInLevelList(levelNumber);
+    await levelSelectModal.checkLevelsIconsinLevelList(levelNumber);
+    await expect(levelSelectModal.levelName).toHaveText(expectedLevelName);
+    await expect(levelSelectModal.levelObjective).toHaveText(
+      expectedLevelObjective,
+    );
   });
 });
