@@ -17,7 +17,7 @@ test.describe('Level 00', async () => {
     hubPage = await mainMenuPage.clickContinueButton();
   });
 
-  test('should check elements in hub page', async () => {
+  test('check elements in hub page', async () => {
     const expectedMonitorMessage = 'New Levels!';
     await hubPage.checkIfHubElementIsInactive(HubElement.VideoTablet);
     await hubPage.checkIfHubElementIsActive(
@@ -27,7 +27,7 @@ test.describe('Level 00', async () => {
     await hubPage.checkIfHubElementIsInactive(HubElement.Journal);
   });
 
-  test('should check elements in level select', async () => {
+  test('check elements in level select', async () => {
     const levelSelectModal = await hubPage.clickMonitorBox();
     const levelNumber = 0;
 
@@ -46,5 +46,10 @@ test.describe('Level 00', async () => {
     await expect(
       levelSelectModal.levelObjective.locator('img').nth(1),
     ).toHaveAttribute('src', flag);
+  });
+
+  test('check help modal elements at the start of the level', async () => {
+    const levelSelectModal = await hubPage.clickMonitorBox();
+    const level = await levelSelectModal.clickGoButton();
   });
 });
