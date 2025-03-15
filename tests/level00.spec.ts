@@ -1,3 +1,5 @@
+import { check, flag, roverFront } from '../data/images.data';
+import { level00Name, level00Objective } from '../data/level00.data';
 import { HubElement, HubPage } from '../pages/hub.page';
 import { StartPage } from '../pages/start.page';
 import { useStorageState } from '../utils/storage-state.util';
@@ -28,16 +30,21 @@ test.describe('Level 00', async () => {
   test('should check elements in level select', async () => {
     const levelSelectModal = await hubPage.clickMonitorBox();
     const levelNumber = 0;
-    const expectedLevelName = 'Level 0: First Steps';
-    const expectedLevelObjective =
-      'Objective: Move the rover () to the goal ().';
 
     await levelSelectModal.checkNewBadgeInLevelList(levelNumber);
     await levelSelectModal.checkEnabledLevelsInLevelList(levelNumber);
     await levelSelectModal.checkLevelsIconsinLevelList(levelNumber);
-    await expect(levelSelectModal.levelName).toHaveText(expectedLevelName);
-    await expect(levelSelectModal.levelObjective).toHaveText(
-      expectedLevelObjective,
+    await expect(levelSelectModal.levelName).toHaveText(level00Name);
+    await expect(levelSelectModal.levelObjective).toHaveText(level00Objective);
+    await expect(levelSelectModal.levelObjectiveIcon).toHaveAttribute(
+      'd',
+      check,
     );
+    await expect(
+      levelSelectModal.levelObjective.locator('img').nth(0),
+    ).toHaveAttribute('src', roverFront);
+    await expect(
+      levelSelectModal.levelObjective.locator('img').nth(1),
+    ).toHaveAttribute('src', flag);
   });
 });
