@@ -1,3 +1,4 @@
+import { check, lock } from '../data/images.data';
 import { LevelPage } from '../pages/level.page';
 import { BaseModal } from './base.modal';
 import { Page, expect } from '@playwright/test';
@@ -18,6 +19,7 @@ export class LevelSelectModal extends BaseModal {
   // Right column locators
   levelName = this.rightColumn.locator('p.chakra-text');
   levelObjective = this.rightColumn.locator('div > .chakra-text');
+  levelObjectiveIcon = this.levelObjective.locator('path').nth(1);
   goButton = this.rightColumn.locator('button');
 
   constructor(page: Page) {
@@ -48,19 +50,15 @@ export class LevelSelectModal extends BaseModal {
   }
 
   async checkLevelsIconsinLevelList(level: number): Promise<void> {
-    const levelChecked =
-      'M16.59 7.58L10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z';
-    const levelBlocked =
-      'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z';
     for (let i = 0; i < (await this.numberOfLevels); i++) {
       if (i <= level) {
         await expect(
           this.levelButton.nth(i).locator('path').nth(1),
-        ).toHaveAttribute('d', levelChecked);
+        ).toHaveAttribute('d', check);
       } else {
         await expect(
           this.levelButton.nth(i).locator('path').nth(1),
-        ).toHaveAttribute('d', levelBlocked);
+        ).toHaveAttribute('d', lock);
       }
     }
   }
