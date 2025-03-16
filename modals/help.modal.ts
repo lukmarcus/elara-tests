@@ -4,9 +4,12 @@ import { BaseModal } from './base.modal';
 import { Page } from '@playwright/test';
 
 export class HelpModal extends BaseModal {
-  nextButton = this.page.locator('button', { hasText: 'Next' });
-  launchButton = this.page.locator('button', { hasText: 'Launch' });
-  doneButton = this.page.locator('button', { hasText: 'Done' });
+  modal = this.page.locator('[role="dialog"]');
+  title = this.modal.locator('.chakra-text').first();
+  description = this.modal.locator('.chakra-text').last();
+  nextButton = this.modal.locator('button', { hasText: 'Next' });
+  launchButton = this.modal.locator('button', { hasText: 'Launch' });
+  doneButton = this.modal.locator('button', { hasText: 'Done' });
 
   constructor(page: Page) {
     super(page);
