@@ -16,6 +16,7 @@ export class HubPage extends BasePage {
   topMenu = new TopMenuComponent(this.page);
   chatModal = new ChatModal(this.page);
   levelSelectModal = new LevelSelectModal(this.page);
+  journalModal = new JournalModal(this.page);
 
   videoTabletBox = this.page.locator('#video-tablet-box');
   videoTabletBoxImage = this.page.locator("[src*='/assets/hub_video_tablet']");
@@ -45,7 +46,7 @@ export class HubPage extends BasePage {
 
   async clickJournalBox(): Promise<JournalModal> {
     await this.journalBox.click();
-    return new JournalModal(this.page);
+    return this.journalModal;
   }
 
   async checkIfHubElementIsActive(type: HubElement, expectedText?: string) {
