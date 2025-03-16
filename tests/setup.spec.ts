@@ -27,7 +27,6 @@ import { level25Solution } from '../data/level25.data';
 import { level26Solution } from '../data/level26.data';
 import { level27Solution } from '../data/level27.data';
 import { JournalModal } from '../modals/journal.modal';
-import { LevelSelectModal } from '../modals/level-select.modal';
 import { ChatPage } from '../pages/chat.page';
 import { HubPage } from '../pages/hub.page';
 import { IntroPage } from '../pages/intro.page';
@@ -44,7 +43,6 @@ test(
 
     let hubPage: HubPage;
     let journalModal: JournalModal;
-    let levelSelectModal: LevelSelectModal;
     let levelPage: LevelPage;
     let introPage: IntroPage;
     let chatPage: ChatPage;
@@ -67,8 +65,8 @@ test(
     });
 
     await test.step('Save level 01 storage state', async () => {
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      levelPage = await hubPage.levelSelectModal.clickGoButton();
       await levelPage.helpModal.nextButton.click();
       await levelPage.helpModal.nextButton.click();
       await levelPage.helpModal.clickDoneButton();
@@ -85,8 +83,8 @@ test(
       await journalModal.helpModal.clickDoneButton();
       await journalModal.nextPageButton.click();
       hubPage = await journalModal.clickBackToHubButton();
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      await hubPage.levelSelectModal.clickGoButton();
       await levelPage.helpModal.nextButton.click();
       await levelPage.helpModal.nextButton.click();
       await levelPage.helpModal.doneButton.click();
@@ -107,8 +105,8 @@ test(
       journalModal = await hubPage.clickJournalBox();
       await journalModal.nextPageButton.click();
       hubPage = await journalModal.clickBackToHubButton();
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      await hubPage.levelSelectModal.clickGoButton();
       await levelPage.helpModal.nextButton.click();
       await levelPage.helpModal.clickDoneButton();
       await levelPage.deployLevelSolution(level03Solution);
@@ -161,8 +159,8 @@ test(
       await journalModal.helpModal.nextButton.click();
       await journalModal.helpModal.clickDoneButton();
       hubPage = await journalModal.clickBackToHubButton();
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      await hubPage.levelSelectModal.clickGoButton();
       await levelPage.chatModal.clickChatButton('What is it?');
       await levelPage.chatModal.clickChatButton("What's a data point?");
       await levelPage.chatModal.clickChatButton('Understood.');
@@ -185,8 +183,8 @@ test(
     await test.step('Save level 12 storage state', async () => {
       journalModal = await hubPage.clickJournalBox();
       hubPage = await journalModal.clickBackToHubButton();
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      await hubPage.levelSelectModal.clickGoButton();
       await levelPage.deployLevelSolution(level11Solution);
       await levelPage.levelEndModal.clickNextLevelButton();
       await saveStorageState(page, 'level12');
@@ -219,8 +217,8 @@ test(
       journalModal = await hubPage.clickJournalBox();
       await journalModal.nextPageButton.click();
       hubPage = await journalModal.clickBackToHubButton();
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      await hubPage.levelSelectModal.clickGoButton();
       await levelPage.chatModal.clickChatButton(
         'How do I avoid the falling asteroids?',
       );
@@ -241,8 +239,8 @@ test(
     });
 
     await test.step('Save level 17 storage state', async () => {
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      await hubPage.levelSelectModal.clickGoButton();
       await levelPage.chatModal.clickChatButton('What kind of damage?');
       await levelPage.chatModal.clickChatButton('What does that mean exactly?');
       await levelPage.chatModal.clickChatButton("Okay, let's do this!");
@@ -254,8 +252,8 @@ test(
     await test.step('Save level 18 storage state', async () => {
       journalModal = await hubPage.clickJournalBox();
       hubPage = await journalModal.clickBackToHubButton();
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      await hubPage.levelSelectModal.clickGoButton();
       await levelPage.chatModal.clickChatButton('Any ideas?');
       await levelPage.chatModal.clickChatButton('Three lefts?');
       await levelPage.chatModal.clickChatButton("I'll give it a try!");
@@ -266,8 +264,8 @@ test(
     });
 
     await test.step('Save level 19 storage state', async () => {
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      await hubPage.levelSelectModal.clickGoButton();
       await levelPage.chatModal.clickChatButton("Great! What's next?");
       await levelPage.chatModal.clickChatButton("What's the catch?");
       await levelPage.chatModal.clickChatButton("Whoa... that's weird.");
@@ -286,8 +284,8 @@ test(
     await test.step('Save level 21 storage state', async () => {
       journalModal = await hubPage.clickJournalBox();
       hubPage = await journalModal.clickBackToHubButton();
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      await hubPage.levelSelectModal.clickGoButton();
       await levelPage.chatModal.clickChatButton('Tell me about it...');
       await levelPage.chatModal.clickChatButton(
         "I don't get it. What do you mean?",
@@ -332,8 +330,8 @@ test(
       await chatPage.clickChatButton("Okay, I'll do it.");
       await chatPage.clickChatButton('Tell me about it...');
       await chatPage.clickChatButton('No time to waste!');
-      levelSelectModal = await hubPage.clickMonitorBox();
-      levelPage = await levelSelectModal.clickGoButton();
+      await hubPage.clickMonitorBox();
+      await hubPage.levelSelectModal.clickGoButton();
       await levelPage.deployLevelSolution(level23Solution);
       await levelPage.levelEndModal.clickNextLevelButton();
       await saveStorageState(page, 'level24');

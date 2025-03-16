@@ -2,6 +2,7 @@ import { TopMenuComponent } from '../components/top-menu.component';
 import { ChatModal } from '../modals/chat.modal';
 import { HelpModal } from '../modals/help.modal';
 import { LevelEndModal } from '../modals/level-end.modal';
+import { LevelSelectModal } from '../modals/level-select.modal';
 import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
 
@@ -10,6 +11,7 @@ export class LevelPage extends BasePage {
   helpModal = new HelpModal(this.page);
   levelEndModal = new LevelEndModal(this.page);
   chatModal = new ChatModal(this.page);
+  levelSelectModal = new LevelSelectModal(this.page);
 
   deployButton = this.page.locator('button', { hasText: 'Deploy' });
   resetButton = this.page.locator('button', { hasText: 'Reset' });

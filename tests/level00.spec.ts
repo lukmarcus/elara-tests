@@ -28,28 +28,30 @@ test.describe('Level 00', async () => {
   });
 
   test('check elements in level select', async () => {
-    const levelSelectModal = await hubPage.clickMonitorBox();
+    await hubPage.clickMonitorBox();
     const levelNumber = 0;
 
-    await levelSelectModal.checkNewBadgeInLevelList(levelNumber);
-    await levelSelectModal.checkEnabledLevelsInLevelList(levelNumber);
-    await levelSelectModal.checkLevelsIconsinLevelList(levelNumber);
-    await expect(levelSelectModal.levelName).toHaveText(level00Name);
-    await expect(levelSelectModal.levelObjective).toHaveText(level00Objective);
-    await expect(levelSelectModal.levelObjectiveIcon).toHaveAttribute(
+    await hubPage.levelSelectModal.checkNewBadgeInLevelList(levelNumber);
+    await hubPage.levelSelectModal.checkEnabledLevelsInLevelList(levelNumber);
+    await hubPage.levelSelectModal.checkLevelsIconsinLevelList(levelNumber);
+    await expect(hubPage.levelSelectModal.levelName).toHaveText(level00Name);
+    await expect(hubPage.levelSelectModal.levelObjective).toHaveText(
+      level00Objective,
+    );
+    await expect(hubPage.levelSelectModal.levelObjectiveIcon).toHaveAttribute(
       'd',
       check,
     );
     await expect(
-      levelSelectModal.levelObjective.locator('img').nth(0),
+      hubPage.levelSelectModal.levelObjective.locator('img').nth(0),
     ).toHaveAttribute('src', roverFront);
     await expect(
-      levelSelectModal.levelObjective.locator('img').nth(1),
+      hubPage.levelSelectModal.levelObjective.locator('img').nth(1),
     ).toHaveAttribute('src', flag);
   });
 
   test('check help modal elements at the start of the level', async () => {
-    const levelSelectModal = await hubPage.clickMonitorBox();
-    const level = await levelSelectModal.clickGoButton();
+    await hubPage.clickMonitorBox();
+    const levelPage = await hubPage.levelSelectModal.clickGoButton();
   });
 });

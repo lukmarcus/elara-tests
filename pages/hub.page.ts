@@ -15,6 +15,7 @@ export enum HubElement {
 export class HubPage extends BasePage {
   topMenu = new TopMenuComponent(this.page);
   chatModal = new ChatModal(this.page);
+  levelSelectModal = new LevelSelectModal(this.page);
 
   videoTabletBox = this.page.locator('#video-tablet-box');
   videoTabletBoxImage = this.page.locator("[src*='/assets/hub_video_tablet']");
@@ -39,7 +40,7 @@ export class HubPage extends BasePage {
 
   async clickMonitorBox(): Promise<LevelSelectModal> {
     await this.monitorBox.click();
-    return new LevelSelectModal(this.page);
+    return this.levelSelectModal;
   }
 
   async clickJournalBox(): Promise<JournalModal> {
