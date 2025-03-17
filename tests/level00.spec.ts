@@ -1,3 +1,11 @@
+import {
+  level00Help01Description,
+  level00Help01Title,
+  level00Help02Description,
+  level00Help02Title,
+  level00Help03Description,
+  level00Help03Title,
+} from '../data/help.data';
 import { check, flag, roverFront } from '../data/images.data';
 import { level00Name, level00Objective } from '../data/level00.data';
 import { HubElement, HubPage } from '../pages/hub.page';
@@ -53,5 +61,27 @@ test.describe('Level 00', async () => {
   test('check help modal elements at the start of the level', async () => {
     await hubPage.clickMonitorBox();
     const levelPage = await hubPage.levelSelectModal.clickGoButton();
+
+    await expect(levelPage.helpModal.title).toHaveText(level00Help01Title);
+    await expect(levelPage.helpModal.description).toHaveText(
+      level00Help01Description,
+    );
+    await levelPage.helpModal.nextButton.click();
+    await expect(levelPage.helpModal.title).toHaveText(level00Help02Title);
+    await expect(levelPage.helpModal.description).toHaveText(
+      level00Help02Description,
+    );
+    await levelPage.helpModal.nextButton.click();
+    await expect(levelPage.helpModal.title).toHaveText(level00Help03Title);
+    await expect(levelPage.helpModal.description).toHaveText(
+      level00Help03Description,
+    );
+  });
+
+  test('check', async () => {
+    await hubPage.clickMonitorBox();
+    const levelPage = await hubPage.levelSelectModal.clickGoButton();
+    await levelPage.helpModal.nextButton.click();
+    await levelPage.helpModal.nextButton.click();
   });
 });
