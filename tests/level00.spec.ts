@@ -85,16 +85,7 @@ test.describe('Level 00', async () => {
         { title: level00Help03Title, description: level00Help03Description },
       ];
 
-      for (let i = 0; i < helpSteps.length; i++) {
-        await expect(levelPage.helpModal.title).toHaveText(helpSteps[i].title);
-        await expect(levelPage.helpModal.description).toHaveText(
-          helpSteps[i].description,
-        );
-
-        if (i < helpSteps.length - 1) {
-          await levelPage.helpModal.nextButton.click();
-        }
-      }
+      await levelPage.helpModal.verifyHelpSteps(helpSteps);
     });
 
     test('should skip help modal', async () => {
