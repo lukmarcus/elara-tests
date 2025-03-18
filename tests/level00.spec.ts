@@ -1,14 +1,8 @@
-import {
-  level00Help01Description,
-  level00Help01Title,
-  level00Help02Description,
-  level00Help02Title,
-  level00Help03Description,
-  level00Help03Title,
-} from '../data/help.data';
+import { level00helpSteps } from '../data/help.data';
 import { check, flag, roverFront } from '../data/images.data';
 import { level00Name, level00Objective } from '../data/level00.data';
 import { HubElement, HubPage } from '../pages/hub.page';
+import { LevelPage } from '../pages/level.page';
 import { StartPage } from '../pages/start.page';
 import { useStorageState } from '../utils/storage-state.util';
 import { expect } from '@playwright/test';
@@ -66,7 +60,7 @@ test.describe('Level 00', async () => {
   });
 
   test.describe('Level Page', () => {
-    let levelPage: any;
+    let levelPage: LevelPage;
 
     test.beforeEach(async () => {
       await hubPage.clickMonitorBox();
@@ -79,11 +73,7 @@ test.describe('Level 00', async () => {
     });
 
     test('should display correct help modal content', async () => {
-      const helpSteps = [
-        { title: level00Help01Title, description: level00Help01Description },
-        { title: level00Help02Title, description: level00Help02Description },
-        { title: level00Help03Title, description: level00Help03Description },
-      ];
+      const helpSteps = level00helpSteps;
 
       await levelPage.helpModal.verifyHelpSteps(helpSteps);
     });
