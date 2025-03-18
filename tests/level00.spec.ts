@@ -1,6 +1,6 @@
 import { level00helpSteps } from '../data/help.data';
 import { check, flag, roverFront } from '../data/images.data';
-import { level00Name, level00Objective } from '../data/level00.data';
+import { level00Data } from '../data/level00.data';
 import { HubElement, HubPage } from '../pages/hub.page';
 import { LevelPage } from '../pages/level.page';
 import { StartPage } from '../pages/start.page';
@@ -37,14 +37,20 @@ test.describe('Level 00', async () => {
     });
 
     test('should display correct level info', async () => {
-      const levelNumber = 0;
-
-      await hubPage.levelSelectModal.checkNewBadgeInLevelList(levelNumber);
-      await hubPage.levelSelectModal.checkEnabledLevelsInLevelList(levelNumber);
-      await hubPage.levelSelectModal.checkLevelsIconsinLevelList(levelNumber);
-      await expect(hubPage.levelSelectModal.levelName).toHaveText(level00Name);
+      await hubPage.levelSelectModal.checkNewBadgeInLevelList(
+        level00Data.number,
+      );
+      await hubPage.levelSelectModal.checkEnabledLevelsInLevelList(
+        level00Data.number,
+      );
+      await hubPage.levelSelectModal.checkLevelsIconsinLevelList(
+        level00Data.number,
+      );
+      await expect(hubPage.levelSelectModal.levelName).toHaveText(
+        level00Data.name,
+      );
       await expect(hubPage.levelSelectModal.levelObjective).toHaveText(
-        level00Objective,
+        level00Data.objective,
       );
       await expect(hubPage.levelSelectModal.levelObjectiveIcon).toHaveAttribute(
         'd',
@@ -69,7 +75,7 @@ test.describe('Level 00', async () => {
 
     test('should have correct title', async () => {
       const pageTitle = await levelPage.getTitle();
-      expect(pageTitle).toBe('Elara | ' + level00Name);
+      expect(pageTitle).toBe('Elara | ' + level00Data.name);
     });
 
     test('should display correct help modal content', async () => {
