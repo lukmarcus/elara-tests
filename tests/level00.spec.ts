@@ -1,5 +1,5 @@
-import { level00helpSteps } from '../data/help.data';
-import { check, flag, roverFront } from '../data/images.data';
+import { level00HelpData } from '../data/help.data';
+import { imagesData } from '../data/images.data';
 import { level00Data } from '../data/level00.data';
 import { HubElement, HubPage } from '../pages/hub.page';
 import { LevelPage } from '../pages/level.page';
@@ -54,14 +54,14 @@ test.describe('Level 00', async () => {
       );
       await expect(hubPage.levelSelectModal.levelObjectiveIcon).toHaveAttribute(
         'd',
-        check,
+        imagesData.check,
       );
       await expect(
         hubPage.levelSelectModal.levelObjective.locator('img').nth(0),
-      ).toHaveAttribute('src', roverFront);
+      ).toHaveAttribute('src', imagesData.roverFront);
       await expect(
         hubPage.levelSelectModal.levelObjective.locator('img').nth(1),
-      ).toHaveAttribute('src', flag);
+      ).toHaveAttribute('src', imagesData.flag);
     });
   });
 
@@ -79,7 +79,7 @@ test.describe('Level 00', async () => {
     });
 
     test('should display correct help modal content', async () => {
-      const helpSteps = level00helpSteps;
+      const helpSteps = level00HelpData;
 
       await levelPage.helpModal.verifyHelpSteps(helpSteps);
     });
