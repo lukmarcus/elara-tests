@@ -54,7 +54,7 @@ test.describe('Level 00', async () => {
       );
       await expect(hubPage.levelSelectModal.levelObjectiveIcon).toHaveAttribute(
         'd',
-        imagesData.check,
+        imagesData.checkCircle,
       );
       await expect(
         hubPage.levelSelectModal.levelObjective.locator('img').nth(0),
