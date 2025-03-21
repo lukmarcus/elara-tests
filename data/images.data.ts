@@ -18,6 +18,8 @@ const rock =
 
 const check = 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z';
 
+const checkSquare = 'M0 0h24v24H0z';
+
 const checkCircle =
   'M16.59 7.58L10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z';
 
@@ -34,6 +36,7 @@ export const imagesData = {
   flag: flag,
   rock: rock,
   check: check,
+  checkSquare: checkSquare,
   checkCircle: checkCircle,
   lock: lock,
   arrow: arrow,
