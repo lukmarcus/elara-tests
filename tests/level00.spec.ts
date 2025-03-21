@@ -82,6 +82,14 @@ test.describe('Level 00', async () => {
       const helpSteps = level00HelpData;
 
       await levelPage.helpModal.verifyHelpSteps(helpSteps);
+
+      await expect(levelPage.helpModal.rightButton).toHaveText('Done');
+      await expect(
+        levelPage.helpModal.rightButton.locator('path').nth(0),
+      ).toHaveAttribute('d', imagesData.checkSquare);
+      await expect(
+        levelPage.helpModal.rightButton.locator('path').nth(1),
+      ).toHaveAttribute('d', imagesData.check);
     });
 
     test('should skip help modal', async () => {
