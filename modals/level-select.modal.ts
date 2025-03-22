@@ -1,4 +1,4 @@
-import { check, lock } from '../data/images.data';
+import { imagesData } from '../data/images.data';
 import { LevelPage } from '../pages/level.page';
 import { BaseModal } from './base.modal';
 import { Page, expect } from '@playwright/test';
@@ -54,11 +54,11 @@ export class LevelSelectModal extends BaseModal {
       if (i <= level) {
         await expect(
           this.levelButton.nth(i).locator('path').nth(1),
-        ).toHaveAttribute('d', check);
+        ).toHaveAttribute('d', imagesData.check);
       } else {
         await expect(
           this.levelButton.nth(i).locator('path').nth(1),
-        ).toHaveAttribute('d', lock);
+        ).toHaveAttribute('d', imagesData.lock);
       }
     }
   }
