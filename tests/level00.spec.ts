@@ -36,7 +36,7 @@ test.describe('Level 00', async () => {
       await hubPage.clickMonitorBox();
     });
 
-    test('should display correct level info', async () => {
+    test('should display correct level list info', async () => {
       await hubPage.levelSelectModal.checkNewBadgeInLevelList(
         level00Data.number,
       );
@@ -92,9 +92,14 @@ test.describe('Level 00', async () => {
       ).toHaveAttribute('d', imagesData.check);
     });
 
-    test('should skip help modal', async () => {
+    test('should display correct level info', async () => {
       await levelPage.helpModal.nextButton.click();
       await levelPage.helpModal.nextButton.click();
+      await levelPage.helpModal.doneButton.click();
+
+      await expect(levelPage.levelName).toHaveText(level00Data.name);
+      await expect(levelPage.chooseLevelButton).toHaveText('Choose level');
+      await expect(levelPage.showHintsButton).toHaveText('Show hints');
     });
   });
 });
