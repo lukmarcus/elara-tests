@@ -100,6 +100,19 @@ test.describe('Level 00', async () => {
       await expect(levelPage.levelName).toHaveText(level00Data.name);
       await expect(levelPage.chooseLevelButton).toHaveText('Choose level');
       await expect(levelPage.showHintsButton).toHaveText('Show hints');
+      await expect(levelPage.objectiveSection).toHaveText(
+        level00Data.objective,
+      );
+      await expect(levelPage.objectiveIcon).toHaveAttribute(
+        'd',
+        imagesData.checkCircle,
+      );
+      await expect(
+        levelPage.objectiveSection.locator('img').nth(0),
+      ).toHaveAttribute('src', imagesData.roverFront);
+      await expect(
+        levelPage.objectiveSection.locator('img').nth(1),
+      ).toHaveAttribute('src', imagesData.flag);
     });
   });
 });

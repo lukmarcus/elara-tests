@@ -19,6 +19,7 @@ export class LevelPage extends BasePage {
   showHintsButton = this.levelNameSection.locator('button').nth(1);
 
   objectiveSection = this.page.locator('.css-0').nth(1);
+  objectiveIcon = this.objectiveSection.locator('path').nth(1);
 
   deployButton = this.page.locator('button', { hasText: 'Deploy' });
   resetButton = this.page.locator('button', { hasText: 'Reset' });
