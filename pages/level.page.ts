@@ -13,6 +13,13 @@ export class LevelPage extends BasePage {
   chatModal = new ChatModal(this.page);
   levelSelectModal = new LevelSelectModal(this.page);
 
+  levelNameSection = this.page.locator('.css-0').nth(0);
+  levelName = this.levelNameSection.locator('.chakra-text');
+  chooseLevelButton = this.levelNameSection.locator('button').nth(0);
+  showHintsButton = this.levelNameSection.locator('button').nth(1);
+
+  objectiveSection = this.page.locator('.css-0').nth(1);
+
   deployButton = this.page.locator('button', { hasText: 'Deploy' });
   resetButton = this.page.locator('button', { hasText: 'Reset' });
   stopButton = this.page.locator('.control-bar button').nth(0);
