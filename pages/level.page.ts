@@ -1,6 +1,7 @@
 import { TopMenuComponent } from '../components/top-menu.component';
 import { ChatModal } from '../modals/chat.modal';
 import { HelpModal } from '../modals/help.modal';
+import { HintsModal } from '../modals/hints.modal';
 import { LevelEndModal } from '../modals/level-end.modal';
 import { LevelSelectModal } from '../modals/level-select.modal';
 import { BasePage } from './base.page';
@@ -12,6 +13,7 @@ export class LevelPage extends BasePage {
   levelEndModal = new LevelEndModal(this.page);
   chatModal = new ChatModal(this.page);
   levelSelectModal = new LevelSelectModal(this.page);
+  hintsModal = new HintsModal(this.page);
 
   levelNameSection = this.page.locator('.css-0').nth(0);
   levelName = this.levelNameSection.locator('.chakra-text');
@@ -32,6 +34,16 @@ export class LevelPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
+  }
+
+  async clickChooseLevelButton(): Promise<LevelSelectModal> {
+    await this.chooseLevelButton.click();
+    return this.levelSelectModal;
+  }
+
+  async clickShowHintsButton(): Promise<HintsModal> {
+    await this.showHintsButton.click();
+    return this.hintsModal;
   }
 
   async deployLevelSolution(solution: string): Promise<LevelEndModal> {
