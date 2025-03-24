@@ -1,4 +1,5 @@
 import { level00HelpData } from '../data/help.data';
+import { level00HintsData } from '../data/hints.data';
 import { imagesData } from '../data/images.data';
 import { level00Data } from '../data/level00.data';
 import { HubElement, HubPage } from '../pages/hub.page';
@@ -90,6 +91,24 @@ test.describe('Level 00', async () => {
       await expect(
         levelPage.helpModal.rightButton.locator('path').nth(1),
       ).toHaveAttribute('d', imagesData.check);
+    });
+
+    test('should display correct hints modal content', async () => {
+      await levelPage.helpModal.nextButton.click();
+      await levelPage.helpModal.nextButton.click();
+      await levelPage.helpModal.doneButton.click();
+      await levelPage.clickShowHintsButton();
+
+      await expect(levelPage.hintsModal.header).toHaveText('Hint(s)');
+      await expect(levelPage.hintsModal.acapit.nth(0)).toHaveText(
+        level00HintsData.hint01,
+      );
+      await expect(levelPage.hintsModal.acapit.nth(1)).toHaveText(
+        level00HintsData.hint02,
+      );
+
+      await levelPage.hintsModal.closeButton.click();
+      await expect(levelPage.hintsModal.modal).toBeHidden();
     });
 
     test('should display correct level info', async () => {
