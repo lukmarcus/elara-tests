@@ -66,7 +66,7 @@ test.describe('Level 00', async () => {
     });
   });
 
-  test.describe('Level Page', () => {
+  test.describe('Level Page with Help Modal', () => {
     let levelPage: LevelPage;
 
     test.beforeEach(async () => {
@@ -92,11 +92,20 @@ test.describe('Level 00', async () => {
         levelPage.helpModal.rightButton.locator('path').nth(1),
       ).toHaveAttribute('d', imagesData.check);
     });
+  });
 
-    test('should display correct hints modal content', async () => {
+  test.describe('Level Page', () => {
+    let levelPage: LevelPage;
+
+    test.beforeEach(async () => {
+      await hubPage.clickMonitorBox();
+      levelPage = await hubPage.levelSelectModal.clickGoButton();
       await levelPage.helpModal.nextButton.click();
       await levelPage.helpModal.nextButton.click();
       await levelPage.helpModal.doneButton.click();
+    });
+
+    test('should display correct hints modal content', async () => {
       await levelPage.clickShowHintsButton();
 
       await expect(levelPage.hintsModal.header).toHaveText('Hint(s)');
@@ -112,10 +121,6 @@ test.describe('Level 00', async () => {
     });
 
     test('should display correct level info', async () => {
-      await levelPage.helpModal.nextButton.click();
-      await levelPage.helpModal.nextButton.click();
-      await levelPage.helpModal.doneButton.click();
-
       await expect(levelPage.levelName).toHaveText(level00Data.name);
       await expect(levelPage.chooseLevelButton).toHaveText('Choose level');
       await expect(levelPage.showHintsButton).toHaveText('Show hints');
