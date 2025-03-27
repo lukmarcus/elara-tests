@@ -23,6 +23,11 @@ export class LevelPage extends BasePage {
   objectiveSection = this.page.locator('.css-0').nth(1);
   objectiveIcon = this.objectiveSection.locator('path').nth(1);
 
+  editorSection = this.page.locator('#editor-section');
+  controlBar = this.editorSection.locator('.control-bar');
+  firstButton = this.controlBar.locator('.chakra-button').nth(0);
+  secondButton = this.controlBar.locator('.chakra-button').nth(1);
+
   deployButton = this.page.locator('button', { hasText: 'Deploy' });
   resetButton = this.page.locator('button', { hasText: 'Reset' });
   stopButton = this.page.locator('.control-bar button').nth(0);
