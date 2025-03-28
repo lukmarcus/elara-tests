@@ -25,16 +25,24 @@ export class LevelPage extends BasePage {
 
   editorSection = this.page.locator('#editor-section');
   controlBar = this.editorSection.locator('.control-bar');
-  firstButton = this.controlBar.locator('.chakra-button').nth(0);
-  secondButton = this.controlBar.locator('.chakra-button').nth(1);
 
-  deployButton = this.page.locator('button', { hasText: 'Deploy' });
-  resetButton = this.page.locator('button', { hasText: 'Reset' });
-  stopButton = this.page.locator('.control-bar button').nth(0);
-  backwardButton = this.page.locator('.control-bar button').nth(1);
-  playPauseButton = this.page.locator('.control-bar button').nth(2);
-  forwardButton = this.page.locator('.control-bar button').nth(3);
-  stepsCountText = this.page.locator('.control-bar span.chakra-text');
+  buttonBeforeDeploy = this.controlBar
+    .locator('> div > div')
+    .nth(0)
+    .locator('> .chakra-button');
+  deployButton = this.buttonBeforeDeploy.nth(0);
+  resetButton = this.buttonBeforeDeploy.nth(1);
+
+  buttonAfterDeploy = this.controlBar
+    .locator('> div > div')
+    .nth(1)
+    .locator('> .chakra-button');
+  stopButton = this.buttonAfterDeploy.nth(0);
+  backwardButton = this.buttonAfterDeploy.nth(1);
+  playPauseButton = this.buttonAfterDeploy.nth(2);
+  forwardButton = this.buttonAfterDeploy.nth(3);
+
+  stepsCountText = this.controlBar.locator('span.chakra-text');
   textbox = this.page.getByRole('textbox');
 
   constructor(page: Page) {
